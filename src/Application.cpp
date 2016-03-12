@@ -21,7 +21,6 @@
 #include "gui/VPadController.h"
 #include "gui/WPadController.h"
 #include "resources/Resources.h"
-#include "sounds/SoundHandler.hpp"
 #include "utils/logger.h"
 
 Application *Application::applicationInstance = NULL;
@@ -29,7 +28,6 @@ bool Application::exitApplication = false;
 
 Application::Application()
 	: CThread(CThread::eAttributeAffCore0 | CThread::eAttributePinnedAff, 0, 0x20000)
-	, bgMusic(NULL)
 	, video(NULL)
     , mainWindow(NULL)
     , exitCode(EXIT_RELAUNCH_ON_LOAD)
@@ -43,20 +41,12 @@ Application::Application()
     //! load resources
     Resources::LoadFiles("sd:/wiiu/apps/homebrew_launcher/resources");
 
-    //! create bgMusic
-    bgMusic = new GuiSound(Resources::GetFile("bgMusic.ogg"), Resources::GetFileSize("bgMusic.ogg"));
-    bgMusic->SetLoop(true);
-    bgMusic->Play();
-    bgMusic->SetVolume(50);
-
 	exitApplication = false;
 }
 
 Application::~Application()
 {
     log_printf("Destroy music\n");
-
-    delete bgMusic;
 
     log_printf("Destroy controller\n");
 
@@ -68,9 +58,6 @@ Application::~Application()
 
     log_printf("Clear resources\n");
     Resources::Clear();
-
-    log_printf("Stop sound handler\n");
-	SoundHandler::DestroyInstance();
 }
 
 int Application::exec()

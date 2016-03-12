@@ -44,9 +44,6 @@ GuiButton::GuiButton(f32 w, f32 h)
 		trigger[i] = NULL;
 	}
 
-	soundOver = NULL;
-	soundHold = NULL;
-	soundClick = NULL;
 	clickedTrigger = NULL;
 	heldTrigger = NULL;
 	selectable = true;
@@ -111,19 +108,6 @@ void GuiButton::setLabelClick(GuiText* txt, int n)
 {
 	labelClick[n] = txt;
 	if(txt) txt->setParent(this);
-}
-void GuiButton::setSoundOver(GuiSound * snd)
-{
-	soundOver = snd;
-}
-void GuiButton::setSoundHold(GuiSound * snd)
-{
-	soundHold = snd;
-}
-
-void GuiButton::setSoundClick(GuiSound * snd)
-{
-	soundClick = snd;
 }
 
 void GuiButton::setTrigger(GuiTrigger * t, int idx)
@@ -199,9 +183,6 @@ void GuiButton::update(GuiController * c)
 				//if(this->isRumbleActive())
 				//	this->rumble(t->chan);
 
-				if(soundOver)
-					soundOver->Play();
-
 				if(effectsOver && !effects)
 				{
 					// initiate effects
@@ -241,9 +222,6 @@ void GuiButton::update(GuiController * c)
             if(   !clickedTrigger && isClicked
                && (trigger[i]->isClickEverywhere() || (isStateSet(STATE_SELECTED | STATE_OVER, c->chan) && trigger[i]->isSelectionClickEverywhere()) || this->isInside(c->data.x, c->data.y)))
             {
-                if(soundClick)
-                    soundClick->Play();
-
                 clickedTrigger = trigger[i];
 
                 if(!isStateSet(STATE_CLICKED, c->chan))

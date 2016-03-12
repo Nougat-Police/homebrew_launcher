@@ -23,7 +23,6 @@
 #include "GuiFrame.h"
 #include "GuiController.h"
 #include "GuiText.h"
-#include "GuiSound.h"
 #include "GuiButton.h"
 #include "GuiTrigger.h"
 

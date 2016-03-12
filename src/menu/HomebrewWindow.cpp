@@ -29,7 +29,6 @@
 
 HomebrewWindow::HomebrewWindow(int w, int h)
     : GuiFrame(w, h)
-    , buttonClickSound(Resources::GetSound("button_click.mp3"))
     , homebrewButtonImgData(Resources::GetImageData("homebrewButton.png"))
     , arrowRightImageData(Resources::GetImageData("rightArrow.png"))
     , arrowLeftImageData(Resources::GetImageData("leftArrow.png"))
@@ -124,7 +123,6 @@ HomebrewWindow::HomebrewWindow(int w, int h)
         homebrewButtons[idx].button->setTrigger(&touchTrigger);
         homebrewButtons[idx].button->setTrigger(&wpadTouchTrigger);
         homebrewButtons[idx].button->setEffectGrow();
-        homebrewButtons[idx].button->setSoundClick(buttonClickSound);
         homebrewButtons[idx].button->clicked.connect(this, &HomebrewWindow::OnHomebrewButtonClick);
 
         append(homebrewButtons[idx].button);
@@ -140,7 +138,6 @@ HomebrewWindow::HomebrewWindow(int w, int h)
         arrowLeftButton.setTrigger(&touchTrigger);
         arrowLeftButton.setTrigger(&wpadTouchTrigger);
         arrowLeftButton.setTrigger(&buttonLTrigger);
-        arrowLeftButton.setSoundClick(buttonClickSound);
         arrowLeftButton.clicked.connect(this, &HomebrewWindow::OnLeftArrowClick);
 
         arrowRightButton.setImage(&arrowRightImage);
@@ -150,7 +147,6 @@ HomebrewWindow::HomebrewWindow(int w, int h)
         arrowRightButton.setTrigger(&touchTrigger);
         arrowRightButton.setTrigger(&wpadTouchTrigger);
         arrowRightButton.setTrigger(&buttonRTrigger);
-        arrowRightButton.setSoundClick(buttonClickSound);
         arrowRightButton.clicked.connect(this, &HomebrewWindow::OnRightArrowClick);
         append(&arrowRightButton);
     }
@@ -168,7 +164,6 @@ HomebrewWindow::~HomebrewWindow()
         delete homebrewButtons[i].iconImg;
     }
 
-    Resources::RemoveSound(buttonClickSound);
     Resources::RemoveImageData(homebrewButtonImgData);
     Resources::RemoveImageData(arrowRightImageData);
     Resources::RemoveImageData(arrowLeftImageData);

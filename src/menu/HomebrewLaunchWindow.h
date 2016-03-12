@@ -39,7 +39,6 @@ private:
     void OnOpenEffectFinish(GuiElement *element);
     void OnCloseEffectFinish(GuiElement *element);
 
-    GuiSound *buttonClickSound;
     GuiImageData * backgroundImgData;
     GuiImage backgroundImg;
 
