@@ -41,6 +41,7 @@ private:
     void OnTcpReceiveStart(GuiElement *element, u32 ip);
     void OnTcpReceiveFinish(GuiElement *element, u32 ip, int result);
 
+    GuiSound *buttonClickSound;
     GuiImageData * homebrewButtonImgData;
 
     GuiImageData* arrowRightImageData;

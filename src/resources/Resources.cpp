@@ -6,6 +6,7 @@
 #include "system/AsyncDeleter.h"
 #include "fs/fs_utils.h"
 #include "gui/GuiImageAsync.h"
+#include "gui/GuiSound.h"
 
 Resources * Resources::instance = NULL;
 
@@ -134,3 +135,55 @@ void Resources::RemoveImageData(GuiImageData * image)
     }
 }
 
+GuiSound * Resources::GetSound(const char * filename)
+{
+    if(!instance)
+        instance = new Resources;
+
+    std::map<std::string, std::pair<unsigned int, GuiSound *> >::iterator itr = instance->soundDataMap.find(std::string(filename));
+    if(itr != instance->soundDataMap.end())
+    {
+        itr->second.first++;
+        return itr->second.second;
+    }
+
+	for(int i = 0; RecourceList[i].filename != NULL; ++i)
+	{
+		if(strcasecmp(filename, RecourceList[i].filename) == 0)
+		{
+			const u8 * buff = RecourceList[i].CustomFile ? RecourceList[i].CustomFile : RecourceList[i].DefaultFile;
+			const u32 size = RecourceList[i].CustomFile ? RecourceList[i].CustomFileSize : RecourceList[i].DefaultFileSize;
+
+			if(buff == NULL)
+                return NULL;
+
+            GuiSound * sound = new GuiSound(buff, size);
+            instance->soundDataMap[std::string(filename)].first = 1;
+            instance->soundDataMap[std::string(filename)].second = sound;
+
+            return sound;
+		}
+	}
+
+	return NULL;
+}
+
+void Resources::RemoveSound(GuiSound * sound)
+{
+    std::map<std::string, std::pair<unsigned int, GuiSound *> >::iterator itr;
+
+    for(itr = instance->soundDataMap.begin(); itr != instance->soundDataMap.end(); itr++)
+    {
+        if(itr->second.second == sound)
+        {
+            itr->second.first--;
+
+            if(itr->second.first == 0)
+            {
+                AsyncDeleter::pushForDelete( itr->second.second );
+                instance->soundDataMap.erase(itr);
+            }
+            break;
+        }
+    }
+}

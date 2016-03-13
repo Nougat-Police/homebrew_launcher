@@ -21,6 +21,7 @@
 #include "GuiText.h"
 #include "GuiController.h"
 #include "GuiImage.h"
+#include "GuiSound.h"
 #include "GuiTrigger.h"
 
 //!Display, manage, and manipulate buttons in the GUI. Buttons can have images, icons, text, and sound set (all of which are optional)
@@ -66,6 +67,16 @@ class GuiButton : public GuiElement
 		void setLabelClick(GuiText* t, int n = 0);
 		//!Sets the sound to play on over
 		//!\param s Pointer to GuiSound object
+		void setSoundOver(GuiSound * s);
+		//!Sets the sound to play on hold
+		//!\param s Pointer to GuiSound object
+		void setSoundHold(GuiSound * s);
+		//!Sets the sound to play on click
+		//!\param s Pointer to GuiSound object
+		void setSoundClick(GuiSound * s);
+		//!Set a new GuiTrigger for the element
+		//!\param i Index of trigger array to set
+		//!\param t Pointer to GuiTrigger
 		void setTrigger(GuiTrigger * t, int idx = -1);
 		//!
 		void resetState(void);
@@ -95,6 +106,9 @@ class GuiButton : public GuiElement
 		GuiText * labelOver[4]; //!< Label(s) to display for STATE_SELECTED
 		GuiText * labelHold[4]; //!< Label(s) to display for STATE_HELD
 		GuiText * labelClick[4]; //!< Label(s) to display for STATE_CLICKED
+		GuiSound * soundOver; //!< Sound to play for STATE_SELECTED
+		GuiSound * soundHold; //!< Sound to play for STATE_HELD
+		GuiSound * soundClick; //!< Sound to play for STATE_CLICKED
 		GuiTrigger * trigger[iMaxGuiTriggers]; //!< GuiTriggers (input actions) that this element responds to
 		GuiTrigger * clickedTrigger;
 		GuiTrigger * heldTrigger;

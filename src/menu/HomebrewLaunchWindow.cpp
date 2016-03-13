@@ -24,6 +24,7 @@
 
 HomebrewLaunchWindow::HomebrewLaunchWindow(const std::string & launchPath, GuiImageData * iconImgData)
     : GuiFrame(0, 0)
+    , buttonClickSound(Resources::GetSound("button_click.mp3"))
     , backgroundImgData(Resources::GetImageData("launchMenuBox.png"))
     , backgroundImg(backgroundImgData)
     , buttonImgData(Resources::GetImageData("button.png"))
@@ -115,6 +116,7 @@ HomebrewLaunchWindow::HomebrewLaunchWindow(const std::string & launchPath, GuiIm
     loadBtn.setTrigger(&touchTrigger);
     loadBtn.setTrigger(&wpadTouchTrigger);
     loadBtn.setEffectGrow();
+    loadBtn.setSoundClick(buttonClickSound);
     loadBtn.clicked.connect(this, &HomebrewLaunchWindow::OnLoadButtonClick);
     append(&loadBtn);
 
@@ -127,12 +129,14 @@ HomebrewLaunchWindow::HomebrewLaunchWindow(const std::string & launchPath, GuiIm
     backBtn.setTrigger(&touchTrigger);
     backBtn.setTrigger(&wpadTouchTrigger);
     backBtn.setEffectGrow();
+    backBtn.setSoundClick(buttonClickSound);
     backBtn.clicked.connect(this, &HomebrewLaunchWindow::OnBackButtonClick);
     append(&backBtn);
 }
 
 HomebrewLaunchWindow::~HomebrewLaunchWindow()
 {
+    Resources::RemoveSound(buttonClickSound);
     Resources::RemoveImageData(backgroundImgData);
     Resources::RemoveImageData(buttonImgData);
 }

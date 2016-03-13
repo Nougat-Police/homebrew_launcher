@@ -43,6 +43,10 @@ public:
         return mainWindow;
     }
 
+    GuiSound *getBgMusic(void) const {
+        return bgMusic;
+    }
+
     int exec(void);
     void fadeOut(void);
 
@@ -60,6 +64,7 @@ private:
 
     void executeThread(void);
 
+    GuiSound *bgMusic;
     CVideo *video;
     MainWindow *mainWindow;
     GuiController *controller[5];
