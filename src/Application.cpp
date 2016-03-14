@@ -28,9 +28,9 @@ Application *Application::applicationInstance = NULL;
 bool Application::exitApplication = false;
 
 Application::Application()
-	: CThread(CThread::eAttributeAffCore0 | CThread::eAttributePinnedAff, 0, 0x20000)
-	, bgMusic(NULL)
-	, video(NULL)
+    : CThread(CThread::eAttributeAffCore0 | CThread::eAttributePinnedAff, 0, 0x20000)
+    , bgMusic(NULL)
+    , video(NULL)
     , mainWindow(NULL)
     , exitCode(EXIT_RELAUNCH_ON_LOAD)
 {
@@ -70,7 +70,7 @@ Application::~Application()
     Resources::Clear();
 
     log_printf("Stop sound handler\n");
-	SoundHandler::DestroyInstance();
+    SoundHandler::DestroyInstance();
 }
 
 int Application::exec()
