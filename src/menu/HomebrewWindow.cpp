@@ -29,7 +29,7 @@
 
 HomebrewWindow::HomebrewWindow(int w, int h)
     : GuiFrame(w, h)
-    , buttonClickSound(Resources::GetSound("button_click.mp3"))
+//  , buttonClickSound(Resources::GetSound("button_click.mp3"))
     , homebrewButtonImgData(Resources::GetImageData("homebrewButton.png"))
     , arrowRightImageData(Resources::GetImageData("rightArrow.png"))
     , arrowLeftImageData(Resources::GetImageData("leftArrow.png"))
@@ -168,7 +168,7 @@ HomebrewWindow::~HomebrewWindow()
         delete homebrewButtons[i].iconImg;
     }
 
-    Resources::RemoveSound(buttonClickSound);
+//    Resources::RemoveSound(buttonClickSound);
     Resources::RemoveImageData(homebrewButtonImgData);
     Resources::RemoveImageData(arrowRightImageData);
     Resources::RemoveImageData(arrowLeftImageData);
