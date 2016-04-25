@@ -1,4 +1,19 @@
-#if ((VER == 532) || (VER == 540))
+#if (VER == 550)
+    #define BAT_SETUP_HOOK_ADDR         0xFFF1D624
+    # not all of those NOP address are required for every firmware
+    # mainly these should stop the kernel from removing our IBAT4 and DBAT5
+    #define BAT_SET_NOP_ADDR_1          0xFFF06B6C
+    #define BAT_SET_NOP_ADDR_2          0xFFF06BF8
+    #define BAT_SET_NOP_ADDR_3          0xFFF003C8
+    #define BAT_SET_NOP_ADDR_4          0xFFF003CC
+    #define BAT_SET_NOP_ADDR_5          0xFFF1D70C
+    #define BAT_SET_NOP_ADDR_6          0xFFF1D728
+    #define BAT_SET_NOP_ADDR_7          0xFFF1D82C
+
+    #define BAT_SET_NOP_ADDR_8          0xFFEE11C4
+    #define BAT_SET_NOP_ADDR_9          0xFFEE11C8
+
+#elif ((VER == 532) || (VER == 540))
     #define BAT_SETUP_HOOK_ADDR         0xFFF1D638
 
     # not all of those NOP address are required for every firmware
@@ -64,7 +79,13 @@
 #endif
 
 #define BAT4U_VAL                       0x008000FF
-#define BAT4L_VAL                       0x30800012
+#if VER >= 410
+    #define BAT4L_VAL                   0x30800012
+#elif VER == 400
+    #define BAT4L_VAL                   0x4E800012
+#else
+    #error Please define valid value for firmware setup.
+#endif
 
 #define SET_R4_TO_ADDR(addr)        \
     lis r3, addr@h              ;   \
@@ -72,6 +93,12 @@
     stw r4, 0(r3)               ;   \
     dcbf 0, r3                  ;   \
     icbi 0, r3                  ;
+
+     .globl SC_0x25_KernelCopyData
+SC_0x25_KernelCopyData:
+    li r0, 0x2500
+    sc
+    blr
 
      .globl Syscall_0x36
 Syscall_0x36:
