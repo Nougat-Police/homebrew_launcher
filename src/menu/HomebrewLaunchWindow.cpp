@@ -24,7 +24,7 @@
 
 HomebrewLaunchWindow::HomebrewLaunchWindow(const std::string & launchPath, GuiImageData * iconImgData)
     : GuiFrame(0, 0)
-//  , buttonClickSound(Resources::GetSound("button_click.mp3"))
+    , buttonClickSound(Resources::GetSound("button_click.mp3"))
     , backgroundImgData(Resources::GetImageData("launchMenuBox.png"))
     , backgroundImg(backgroundImgData)
     , buttonImgData(Resources::GetImageData("button.png"))
@@ -136,7 +136,7 @@ HomebrewLaunchWindow::HomebrewLaunchWindow(const std::string & launchPath, GuiIm
 
 HomebrewLaunchWindow::~HomebrewLaunchWindow()
 {
-//    Resources::RemoveSound(buttonClickSound);
+    Resources::RemoveSound(buttonClickSound);
     Resources::RemoveImageData(backgroundImgData);
     Resources::RemoveImageData(buttonImgData);
 }

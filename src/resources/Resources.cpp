@@ -135,10 +135,6 @@ void Resources::RemoveImageData(GuiImageData * image)
     }
 }
 
-
-//following parts are broken on 410 and below
-//
-/*
 GuiSound * Resources::GetSound(const char * filename)
 {
     if(!instance)
@@ -171,9 +167,7 @@ GuiSound * Resources::GetSound(const char * filename)
 
 	return NULL;
 }
-*/
 
-/*
 void Resources::RemoveSound(GuiSound * sound)
 {
     std::map<std::string, std::pair<unsigned int, GuiSound *> >::iterator itr;
@@ -193,4 +187,3 @@ void Resources::RemoveSound(GuiSound * sound)
         }
     }
 }
-*/

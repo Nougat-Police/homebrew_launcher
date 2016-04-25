@@ -19,8 +19,8 @@ public:
     static GuiImageData * GetImageData(const char * filename);
     static void RemoveImageData(GuiImageData * image);
 
-//  static GuiSound * GetSound(const char * filename);
-//  static void RemoveSound(GuiSound * sound);
+    static GuiSound * GetSound(const char * filename);
+    static void RemoveSound(GuiSound * sound);
 private:
     static Resources *instance;
 
