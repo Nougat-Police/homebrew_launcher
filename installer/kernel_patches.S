@@ -16,8 +16,6 @@
 #elif ((VER == 532) || (VER == 540))
     #define BAT_SETUP_HOOK_ADDR         0xFFF1D638
 
-    # not all of those NOP address are required for every firmware
-    # mainly these should stop the kernel from removing our IBAT4 and DBAT5
     #define BAT_SET_NOP_ADDR_1          0xFFF06A14
     #define BAT_SET_NOP_ADDR_2          0xFFF06AA0
     #define BAT_SET_NOP_ADDR_3          0xFFF003C8
@@ -64,7 +62,7 @@
     #define BAT_SET_NOP_ADDR_4          0xFFF003CC
     #define BAT_SET_NOP_ADDR_5          0xFFF1A528
     #define BAT_SET_NOP_ADDR_6          0xFFF1A544
-//  #define BAT_SET_NOP_ADDR_7          not present in 400
+//  #define BAT_SET_NOP_ADDR_7          not present in 4.0.0
 
     #define BAT_SET_NOP_ADDR_8          0xFFEE0F50
     #define BAT_SET_NOP_ADDR_9          0xFFEE0F54
@@ -77,7 +75,7 @@
     #define BAT_SET_NOP_ADDR_4          0xFFF003CC
     #define BAT_SET_NOP_ADDR_5          0xFFF19FAC
     #define BAT_SET_NOP_ADDR_6          0xFFF19FC8
-//  #define BAT_SET_NOP_ADDR_7          not present in 310
+//  #define BAT_SET_NOP_ADDR_7          not present in 3.1.0
 
     #define BAT_SET_NOP_ADDR_8          0xFFEE0FB0
     #define BAT_SET_NOP_ADDR_9          0xFFEE0FB4
@@ -90,7 +88,7 @@
     #define BAT_SET_NOP_ADDR_4          0xFFF003CC
     #define BAT_SET_NOP_ADDR_5          0xFFF19F14
     #define BAT_SET_NOP_ADDR_6          0xFFF19F30
-//  #define BAT_SET_NOP_ADDR_7          not present in 30x
+//  #define BAT_SET_NOP_ADDR_7          not present in 3.0.x
 
     #define BAT_SET_NOP_ADDR_8          0xFFEE0DB8
     #define BAT_SET_NOP_ADDR_9          0xFFEE0DBC
